@@ -1,6 +1,7 @@
 package work.vietdefi.spring.util.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JSONUtil {
@@ -16,9 +17,9 @@ public class JSONUtil {
         }
     }
     // Convert JSON string to Java object
-    public static <T> T fromJson(String jsonString, Class<T> clazz) {
+    public static <T> T fromJson(String jsonString, TypeReference<T> typeReference) {
         try {
-            return objectMapper.readValue(jsonString, clazz);
+            return objectMapper.readValue(jsonString, typeReference);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null; // Handle the error as needed
